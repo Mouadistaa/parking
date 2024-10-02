@@ -10,7 +10,7 @@ app.get('/', (c) => {
   
 })
 
-const titre = "je m'appelle abdel!jugkjhkj";
+const titre = "je m'appelle abdel!";
 const slug = toSlug(titre);
 const id = generateId(titre);
 console.log(slug);
