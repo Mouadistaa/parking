@@ -1,5 +1,5 @@
 import { generateRandomNumberId } from "../utils/generateRandomNumberId";
-import City from "./City";
+import City from "./city";
 import Park from "./Park";
 import Spot from "./Spot";
 export default class Parking{

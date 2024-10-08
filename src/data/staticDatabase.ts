@@ -1,4 +1,4 @@
-import City from "../classes/City";
+import City from "../classes/city";
 import Parking from "../classes/Parking";
 
 var aixEnProvence=new City("Aix-en-Provence","France",{longitude:43.533329,latitude:5.43333});
