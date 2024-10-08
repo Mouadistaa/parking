@@ -10,11 +10,3 @@ const removeAccents = (str: string) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 };
 
-export function generateId(chaine: string): number {
-    const base = removeAccents(chaine).toLowerCase();
-    let id = 0;
-    for (let i = 0; i < base.length; i++) {
-        id += base.charCodeAt(i) * (i + 1); // On utilise les codes ASCII des caractères pour générer l'ID
-    }
-    return id;
-}

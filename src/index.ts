@@ -1,18 +1,18 @@
-import { Hono } from 'hono'
-import {toSlug} from './utils/Slug'
-import { generateId } from './utils/Slug';
+import {Hono} from 'hono'
+import {toSlug} from './utils/toSlug'
+import {generateRandomNumberId} from './utils/generateRandomNumberId';
 const app = new Hono()
 
 
 app.get('/', (c) => {
-  return c.text('Hello Honofezfzefez!')
+  return c.text('Hello Hono!')
 
   
 })
 
-const titre = "je m'appelle abdel!jugkjhkj";
+const titre = "je m'appelle abdel";
 const slug = toSlug(titre);
-const id = generateId(titre);
+const randomId = generateRandomNumberId();
+console.log(randomId);
 console.log(slug);
-console.log(id);
 export default app
