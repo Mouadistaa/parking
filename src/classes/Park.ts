@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-export class Park{
+export default class Park{
     id:string;
     spot_id:number;
     startedAt:Date;
