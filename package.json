@@ -4,7 +4,10 @@
     "dev": "bun run src/index.ts"
   },
   "dependencies": {
-    "hono": "^4.6.3"
+    "@types/uuid": "^10.0.0",
+    "hono": "^4.6.3",
+    "uuid": "^10.0.0",
+    "validator": "^13.12.0"
   },
   "devDependencies": {
     "@types/bun": "latest"

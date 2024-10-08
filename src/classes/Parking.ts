@@ -1,4 +1,8 @@
-class Parking{
+import { generateRandomNumberId } from "../utils/generateRandomNumberId";
+import City from "./City";
+import Park from "./Park";
+import Spot from "./Spot";
+export default class Parking{
     id : number;
     name : string;
     city_id : number;
@@ -8,14 +12,19 @@ class Parking{
     hourlyRate: number;
     parkIds: number[];
     
-    constructor(id:number,name:string,city_id :number,location:GPS,numberOfSpots:number,hourlyRate: number,parkIds: number[],opened:boolean){
-        this.id=id;
+    constructor(name:string,city:City,numberOfSpots:number,hourlyRate: number,opened:boolean){
+        this.id=generateRandomNumberId();
         this.name=name;
-        this.location=location;
-        this.city_id=city_id;
+        this.location=city.location;
+        this.city_id=city.id;
         this.opened=opened;
         this.numberOfSpots=numberOfSpots;
         this.hourlyRate=hourlyRate;
-        this.parkIds=parkIds;
+        this.parkIds=[];
+        city.parkingsIds.push(this.id);
+        for(var i=0;i<numberOfSpots;i++){
+            var parki=new Spot(this.id);
+            this.parkIds.push(parki.id);
+        }
     }
 }
