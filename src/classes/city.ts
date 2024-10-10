@@ -1,5 +1,6 @@
 import { toSlug } from "../utils/toSlug";
 import { generateRandomNumberId } from "../utils/generateRandomNumberId";
+import { GPS } from "../types/GPS";
 
 export default class City{
     id : number;
@@ -8,6 +9,7 @@ export default class City{
     parkingsIds:number[];
     country:string;
     location :GPS;
+
     constructor(name:string,country:string,location:GPS){
         this.id=generateRandomNumberId();
         this.name=name;
@@ -16,4 +18,8 @@ export default class City{
         this.country=country;
         this.location=location;
     }
+    // Methode pour ajouter un parking à la ville
+    addParking(parkingId: number): void {
+        this.parkingsIds.push(parkingId);
+      }
 }

@@ -1,7 +1,8 @@
 import { generateRandomNumberId } from "../utils/generateRandomNumberId";
 import City from "./city";
-import Park from "./Park";
 import Spot from "./Spot";
+import { GPS } from "../types/GPS";
+
 export default class Parking{
     id : number;
     name : string;
