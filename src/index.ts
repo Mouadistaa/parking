@@ -2,15 +2,28 @@ import { Context, Env, Hono } from 'hono'
 import { HomeController } from './controllers/HomeController';
 import { serveStatic } from 'hono/serve-static';
 import { Data } from 'hono/dist/types/context';
+import {getCities, createCity, getParkings} from "./controllers/CityController";
 
 const app = new Hono()
 app.use('/static/*', serveStatic({
   root: './static',
-  getContent: function (path: string, c: Context<Env, any, {}>): Promise<Data | Response | null> {
-    throw new Error('Function not implemented.');
+  getContent: async (path: string, c: Context): Promise<Data | Response | null> => {
+    // Basic implementation returning the file from the static folder
+    const fs = require('fs').promises;
+    try {
+      const fileContent = await fs.readFile(path);
+      return fileContent;
+    } catch (error) {
+      return null; // Return null if the file is not found
+    }
   }
 }));
+
 app.get('/', HomeController);
+
+app.get('/cities', getCities);
+app.post('/cities', createCity);
+app.get('/parkings', getParkings);
 
 app.get('/cities', (c) => {
   return c.html(`
@@ -47,6 +60,9 @@ app.get('/parkings', (c) => {
     </html>
   `);
 });
+
+
+
 
 export default app
 

@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL") // Utilise l'URL définie dans .env
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model City {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  slug     String    @unique
+  location String?
+  country  String
+  parkings Parking[]
+}
+
+model Parking {
+  id             Int     @id @default(autoincrement())
+  name           String  @unique
+  location       String
+  numberOfPlaces Int
+  hourlyRate     Int
+  opened         Boolean @default(true)
+  cityId         Int
+  city           City    @relation(fields: [cityId], references: [id])
+  spots          Spot[]  @relation("ParkingSpots") // Relation avec Spot
+}
+
+model Spot {
+  id        Int     @id @default(autoincrement())
+  parkingId Int
+  parking   Parking @relation("ParkingSpots", fields: [parkingId], references: [id]) // Relation vers Parking
+  parks     Park[]  @relation("ParkSpot") // Relation inverse vers Park
+}
+
+model Park {
+  id                 String    @id
+  startedAt          DateTime
+  endedAt            DateTime?
+  vehicleNumberPlate String
+  spotId             Int
+  spot               Spot      @relation("ParkSpot", fields: [spotId], references: [id]) // Relation vers Spot avec un nom spécifique
+}
