@@ -3,6 +3,7 @@ import { HomeController } from './controllers/HomeController';
 import { serveStatic } from 'hono/serve-static';
 import { Data } from 'hono/dist/types/context';
 
+
 const app = new Hono()
 app.use('/static/*', serveStatic({
   root: './static',
