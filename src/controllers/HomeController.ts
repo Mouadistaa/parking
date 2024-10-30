@@ -1,5 +1,7 @@
 import { Context } from "hono";
+
 import { html } from "hono/html";
+
 export const HomeController = (c: Context) => {
   return c.html(html`
     <!DOCTYPE html>
@@ -13,15 +15,15 @@ export const HomeController = (c: Context) => {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css" />
     </head>
     <body>
-      <div class="container">
-        <h1>Welcome to EuroPark</h1>
-        <img src="/static/parking.png" alt="Parking">
-        <p>
-          Save time and money with EuroPark! Enjoy a 100% contactless parking experience for a short or long duration in our car parks in Europe!
-        </p>
-        <a href="/cities">Our Cities</a>
-        <a href="/parkings">Our Car Parks</a>
-      </div>
+      <h1>Welcome to EuroPark!</h1>
+        <img src="/static/parking.png" alt="EuroPark">
+        <p>Save time and money with EuroPark! Enjoy a 100% contactless parking experience for a short or long duration in our car parks in Europe!</p>
+        <nav>
+            <ul>
+                <li><a href="/cities">Our Cities</a></li>
+                <li><a href="/parkings">Our Car Parks</a></li>
+            </ul>
+        </nav>
     </html>
   `);
 };
