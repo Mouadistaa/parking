@@ -1,11 +1,8 @@
-// src/routes/cityRoutes.ts
+import { Hono } from 'hono';
+const cityRoutes = new Hono();
 
-import { Router } from 'express';
-import { getCities } from '../controllers/ReadAllCitiesController';
+cityRoutes.get('/', (ctx) => {
+    return ctx.html('<h1>Page d\'accueil des villes</h1>');
+});
 
-const router = Router();
-
-// Route pour récupérer toutes les villes
-router.get('/cities', getCities);
-
-export default router;
+export default cityRoutes;
