@@ -1,7 +1,8 @@
 {
   "name": "Parking",
   "scripts": {
-    "dev": "bun run src/index.ts"
+    "dev": "bun run src/index.ts",
+    "start": "bun run src/index.ts"
   },
   "dependencies": {
     "@types/uuid": "^10.0.0",
