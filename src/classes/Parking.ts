@@ -13,19 +13,18 @@ export default class Parking{
     hourlyRate: number;
     parkIds: number[];
     
-    constructor(name:string,city:City,numberOfSpots:number,hourlyRate: number,opened:boolean){
+    constructor(name:string,city_id: number,numberOfSpots:number,hourlyRate: number,opened:boolean){
         this.id=generateRandomNumberId();
         this.name=name;
-        this.location=city.location;
-        this.city_id=city.id;
+        this.location={ longitude: 0, latitude: 0 };
+        this.city_id=city_id;
         this.opened=opened;
         this.numberOfSpots=numberOfSpots;
         this.hourlyRate=hourlyRate;
         this.parkIds=[];
-        city.parkingsIds.push(this.id);
-        for(var i=0;i<numberOfSpots;i++){
-            var parki=new Spot(this.id);
-            this.parkIds.push(parki.id);
+        for (let i = 0; i < numberOfSpots; i++) {
+            const spot = new Spot(this.id); 
+            this.parkIds.push(spot.id);
         }
     }
 }
