@@ -28,4 +28,3 @@ Des tests fonctionnels ont été créés pour vérifier le bon fonctionnement de
 1. Ouvrez Postman.
 2. Importez le fichier `tests/tests_projet_parking.json` qui est inclus dans ce projet.
 3. Exécutez la collection **Tests Projet Parking** pour vérifier que les routes répondent correctement.
->>>>>>> Etape-2
