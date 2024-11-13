@@ -1,24 +1,21 @@
-import { City } from '../models/City';
-import { Parking } from '../models/Parking';
+import City from "../classes/city";
+import Parking from "../classes/Parking";
 
-// Définition des villes avec leurs coordonnées GPS
-const cities: City[] = [
-  new City(1, 'Aix-en-Provence', 'France', { latitude: 43.5297, longitude: 5.4543 }),
-  new City(2, 'La Spezia', 'Italie', { latitude: 44.2384, longitude: 9.6912 }),
-  new City(3, 'Aix-la-Chapelle', 'Allemagne', { latitude: 50.7764, longitude: 6.0839 }),
-  new City(4, 'San Cristóbal de La Laguna', 'Espagne', { latitude: 28.4872, longitude: -16.3139 }),
-  new City(5, 'Newcastle upon Tyne', 'Angleterre', { latitude: 54.9739, longitude: -1.617439 }),
-];
+var aixEnProvence=new City("Aix-en-Provence","France",{longitude:43.533329,latitude:5.43333});
+var parkA=new Parking("A",aixEnProvence,100,4.5,true);
 
-// Définition des parkings associés aux villes avec utilisation du type GPS
-const parkings: Parking[] = [
-  new Parking('Parking A', 1, { latitude: 43.5297, longitude: 5.4543 }, 100, 4.5),
-  new Parking('Parking B', 2, { latitude: 44.2384, longitude: 9.6912 }, 50, 3.0),
-  new Parking('Parking C', 2, { latitude: 44.2384, longitude: 9.6912 }, 80, 2.5),
-  new Parking('Parking D', 3, { latitude: 50.7764, longitude: 6.0839 }, 40, 2.8),
-  new Parking('Parking E', 4, { latitude: 28.4872, longitude: -16.3139 }, 70, 3.1),
-  new Parking('Parking F', 5, { latitude: 54.9739, longitude: -1.617439 }, 60, 2.4),
-  new Parking('Parking G', 5, { latitude: 54.9739, longitude: -1.617439 }, 90, 3.2),
-];
+var laSpezia=new City("La Spezia","Italie",{longitude:44.238366,latitude:9.6912326});
+var parkB=new Parking("B",laSpezia,50,3,true);
+var parkC=new Parking("C",laSpezia,80,2.5,true);
 
-export { cities, parkings };
+var aixLaChapelle=new City("Aix La Chapelle","Allemagne",{longitude:50.776351,latitude:6.083862});
+var parkD=new Parking("D",aixLaChapelle,40,2.80,true);
+var sanCristobal=new City("San Cristóbal de La Laguna","Espagne",{longitude:28.487180709838867,latitude:-16.313879013061523});
+var parkE=new Parking("E",sanCristobal,70,3.10,true);
+
+var newCastel=new City("Newcastle upon Tyne","Angleterre",{longitude:54.9738474,latitude:-1.6131572});
+var parkF=new Parking("F",newCastel,60,2.40,true);
+var parkG=new Parking("G",newCastel,90,3.20,true);
+
+export const cities:City[]=[aixEnProvence,laSpezia,aixLaChapelle,newCastel];
+export const parkings:Parking[]=[parkA,parkB,parkC,parkD,parkE,parkF,parkG];

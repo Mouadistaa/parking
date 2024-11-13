@@ -1,4 +1,4 @@
-export interface GPS {
-    latitude: number;
-    longitude: number;
-  }
+type GPS={
+    latitude : number;
+    longitude : number;
+}
