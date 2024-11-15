@@ -9,6 +9,8 @@ import { trimTrailingSlash, } from 'hono/trailing-slash'
 import { serveStatic } from 'hono/serve-static';
 import { Data } from 'hono/dist/types/context';
 import {getCities, createCity, getParkings} from "./controllers/CityController";
+import { sortParkingsController } from './controllers/ParkingController';
+
 
 const app = new Hono()
 
@@ -34,16 +36,18 @@ app.onError((err, c) => {
 app.use('/static/*', serveStatic({
   root: './static',
   getContent: async (path: string, c: Context): Promise<Data | Response | null> => {
-    // Basic implementation returning the file from the static folder
     const fs = require('fs').promises;
     try {
       const fileContent = await fs.readFile(path);
       return fileContent;
     } catch (error) {
-      return null; // Return null if the file is not found
+      return null; 
     }
   }
 }));
+
+app.get('/sort/total/:order', (ctx) => sortParkingsController(ctx, 'total'));
+app.get('/sort/available/:order', (ctx) => sortParkingsController(ctx, 'available'));
 
 export default app
 
