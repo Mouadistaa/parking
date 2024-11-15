@@ -9,7 +9,7 @@ import { trimTrailingSlash, } from 'hono/trailing-slash'
 import { serveStatic } from 'hono/serve-static';
 import { Data } from 'hono/dist/types/context';
 import {getCities, createCity, getParkings} from "./controllers/CityController";
-import { sortParkingsController } from './controllers/ParkingController';
+import { filterParkingHistoryController, sortParkingsController } from './controllers/ParkingController';
 
 
 const app = new Hono()
@@ -48,6 +48,9 @@ app.use('/static/*', serveStatic({
 
 app.get('/sort/total/:order', (ctx) => sortParkingsController(ctx, 'total'));
 app.get('/sort/available/:order', (ctx) => sortParkingsController(ctx, 'available'));
+
+app.route('/parking', parkingRoutes);
+app.get('/parking/:id/history', filterParkingHistoryController);
 
 export default app
 

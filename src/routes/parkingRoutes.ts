@@ -2,6 +2,9 @@ import { Hono } from 'hono';
 import { parkings } from '../data/staticDatabase';
 import { sortParkingsController } from '../controllers/ParkingController';
 import { SortingService } from '../services/SortingService';
+import { getParkingIndicators } from '../controllers/ParkingController';
+import { getSortedParkingHistory } from '../controllers/ParkingController';
+import { filterParkingHistoryController } from '../controllers/ParkingController';
 
 const parkingRoutes = new Hono();
 
@@ -38,5 +41,9 @@ parkingRoutes.get('/sort/available/:order', (ctx) => {
   `;
   return ctx.html(htmlContent);
 });
+
+parkingRoutes.get('/indicators', getParkingIndicators);
+parkingRoutes.get('/history/sorted', getSortedParkingHistory);
+
 
 export default parkingRoutes;

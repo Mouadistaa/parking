@@ -16,13 +16,45 @@ sanCristobal.id = 4;
 const newCastle = new City("Newcastle upon Tyne", "Angleterre", { longitude: 54.9738474, latitude: -1.6131572 });
 newCastle.id = 5;
 
-const parkA = new Parking("A", 1, 100, 4.5, true); 
-const parkB = new Parking("B", 2, 50, 3, true);    
-const parkC = new Parking("C", 2, 80, 2.5, true);  
-const parkD = new Parking("D", 3, 40, 2.8, true);   
-const parkE = new Parking("E", 4, 70, 3.1, true);   
-const parkF = new Parking("F", 5, 60, 2.4, true);   
-const parkG = new Parking("G", 5, 90, 3.2, true);
+const parkA = new Parking("A", 1, 100, 4.5, true,50);
+parkA.history = [
+    { date: new Date('2024-11-10T10:00:00Z'), duration: 2 },
+    { date: new Date('2024-11-11T12:00:00Z'), duration: 3 },
+];
+const parkB = new Parking("B", 2, 50, 3, true,25);   
+parkB.history = [
+    { date: new Date('2024-11-09T09:00:00Z'), duration: 1.5 },
+    { date: new Date('2024-11-12T14:30:00Z'), duration: 2.5 },
+]; 
+const parkC = new Parking("C", 2, 80, 2.5, true,40);
+parkC.history = [
+    { date: new Date('2024-11-08T08:30:00Z'), duration: 1 },
+    { date: new Date('2024-11-13T16:00:00Z'), duration: 2 },
+];  
+const parkD = new Parking("D", 3, 40, 2.8, true,20);
+parkD.history = [
+    { date: new Date('2024-11-10T11:00:00Z'), duration: 3.5 },
+    { date: new Date('2024-11-12T17:45:00Z'), duration: 1.8 },
+];   
+const parkE = new Parking("E", 4, 70, 3.1, true,35);   
+parkE.history = [
+    { date: new Date('2024-11-09T07:15:00Z'), duration: 4 },
+    { date: new Date('2024-11-13T13:30:00Z'), duration: 2.2 },
+];
+const parkF = new Parking("F", 5, 60, 2.4, true,30);
+parkF.history = [
+    { date: new Date('2024-11-08T15:00:00Z'), duration: 3 },
+    { date: new Date('2024-11-12T18:15:00Z'), duration: 1.5 },
+];   
+const parkG = new Parking("G", 5, 90, 3.2, true,45);
+parkG.history = [
+    { date: new Date('2024-11-10T09:00:00Z'), duration: 2.5 },
+    { date: new Date('2024-11-13T10:45:00Z'), duration: 2 },
+];
 
 export const cities:City[]=[aixEnProvence,laSpezia,aixLaChapelle,newCastle];
 export const parkings:Parking[]=[parkA,parkB,parkC,parkD,parkE,parkF,parkG];
+
+parkings.forEach((parking, index) => {
+    console.log(`Parking ${index + 1}:`, parking);
+});
