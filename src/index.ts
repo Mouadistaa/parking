@@ -6,13 +6,14 @@ import { parkings, cities } from './data/staticDatabase';
 import { ReadAllCitiesController } from './controllers/ReadAllCitiesController';
 import { ReadOneCityController } from './controllers/ReadOneCityController';
 import { trimTrailingSlash, } from 'hono/trailing-slash'
-import { serveStatic } from 'hono/serve-static';
+import { serveStatic } from 'hono/bun'
 import { Data } from 'hono/dist/types/context';
 import {getCities, createCity, getParkings} from "./controllers/CityController";
 
 const app = new Hono()
 
-app.get('/', HomeController);
+app.use('/static/*', serveStatic({ root: './'}));
+app.use('/parking.png', serveStatic({ path: './'}));
 
 app.route('/parkings', parkingRoutes);
 app.route('/city', cityRoutes);
@@ -31,19 +32,8 @@ app.onError((err, c) => {
   return c.html('<h1>500 - Erreur Interne du Serveur</h1><p>Une erreur est survenue sur le serveur.</p>', 500);
 });
 
-app.use('/static/*', serveStatic({
-  root: './static',
-  getContent: async (path: string, c: Context): Promise<Data | Response | null> => {
-    // Basic implementation returning the file from the static folder
-    const fs = require('fs').promises;
-    try {
-      const fileContent = await fs.readFile(path);
-      return fileContent;
-    } catch (error) {
-      return null; // Return null if the file is not found
-    }
-  }
-}));
+
+app.get('/', HomeController);
 
 export default app
 

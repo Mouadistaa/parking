@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 export const getCities = async (c: any) => {
     try {
-      const cities = await prisma.city.findMany();  // Récupérer toutes les villes
+      const cities = await prisma.city.findMany(); 
       return c.json(cities);
     } catch (error) {
       console.error(error);
