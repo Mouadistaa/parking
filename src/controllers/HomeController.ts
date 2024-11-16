@@ -2,8 +2,8 @@ import { Context } from "hono";
 
 import { html } from "hono/html";
 
-export const HomeController = (c: Context) => {
-  return c.html(html`
+export const HomeController = (c: any) => {
+  return c.html(`
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -24,6 +24,7 @@ export const HomeController = (c: Context) => {
                 <li><a href="/parkings">Our Car Parks</a></li>
             </ul>
         </nav>
+    </body>
     </html>
   `);
 };
