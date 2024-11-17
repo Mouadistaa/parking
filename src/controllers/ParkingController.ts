@@ -97,3 +97,29 @@ export const filterParkingHistoryController = (ctx: Context) => {
         totalRevenue: totalRevenue.toFixed(2) + ' €' 
     });
 };
+
+export const getParkedVehiclesController = (ctx: Context) => {
+    const parkingId = Number(ctx.req.param('id'));
+    const parking = parkings.find(p => p.id === parkingId);
+
+    if (!parking) {
+        return ctx.html('<h1>404 - Parking Not Found</h1>', 404);
+    }
+
+    return ctx.json({
+        parkedVehicles: parking.getParkedVehicles(),
+    });
+};
+
+export const getOverstayedVehiclesController = (ctx: Context) => {
+    const parkingId = Number(ctx.req.param('id'));
+    const parking = parkings.find(p => p.id === parkingId);
+
+    if (!parking) {
+        return ctx.html('<h1>404 - Parking Not Found</h1>', 404);
+    }
+
+    return ctx.json({
+        overstayedVehicles: parking.getOverstayedVehicles(),
+    });
+};

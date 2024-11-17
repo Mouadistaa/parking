@@ -20,6 +20,8 @@ export default class Parking{
     parkIds: number[];
     occupiedSpots: number;
     history: ParkingHistory[];
+    currentVehicles: { vehiclePlate: string, entryTime: Date }[];
+
     
     constructor(name:string,city_id: number,numberOfSpots:number,hourlyRate: number,opened:boolean,occupiedSpots: number){
         this.id=generateRandomNumberId();
@@ -32,6 +34,8 @@ export default class Parking{
         this.parkIds=[];
         this.occupiedSpots = occupiedSpots;
         this.history = [];
+        this.currentVehicles = []; 
+
 
         for (let i = 0; i < numberOfSpots; i++) {
             const spot = new Spot(this.id); 
@@ -48,4 +52,21 @@ export default class Parking{
         console.log('Filter history by date:', { startDate, endDate });
         return this.history.filter(entry => entry.date >= startDate && entry.date <= endDate);
     }
+    getParkedVehicles(): string[] {
+        return this.currentVehicles.map(vehicle => vehicle.vehiclePlate);
+    }
+    getOverstayedVehicles() {
+        const now = new Date();
+      
+        const overstayedVehicles = this.currentVehicles
+          .filter(vehicle => {
+            const timeDiff = now.getTime() - vehicle.entryTime.getTime();
+            console.log(`Checking vehicle ${vehicle.vehiclePlate}:`, timeDiff); 
+            return timeDiff > 24 * 60 * 60 * 1000; 
+          })
+          .map(vehicle => vehicle.vehiclePlate);
+      
+        console.log("Overstayed Vehicles:", overstayedVehicles); 
+        return overstayedVehicles;
+      }
 }

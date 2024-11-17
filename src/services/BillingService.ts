@@ -9,4 +9,30 @@ export class BillingService {
             return order === 'asc' ? dateA - dateB : dateB - dateA;
         });
     }
+    calculateDifferentiatedRate(entryTime: Date, exitTime: Date, hourlyRate: number): number {
+        let totalAmount = 0;
+        let currentTime = new Date(entryTime);
+
+        while (currentTime < exitTime) {
+            const nextTime = new Date(currentTime);
+            nextTime.setMinutes(0, 0, 0);
+            nextTime.setHours(nextTime.getHours() + 1);
+
+            if (nextTime > exitTime) {
+                nextTime.setTime(exitTime.getTime()); 
+            }
+
+            const currentHour = currentTime.getHours();
+            const isDayTime = currentHour >= 7 && currentHour < 19;
+            const rateMultiplier = isDayTime ? 1 : 0.7; 
+
+            const durationInHours = (nextTime.getTime() - currentTime.getTime()) / (1000 * 60 * 60);
+
+            totalAmount += durationInHours * hourlyRate * rateMultiplier;
+
+            currentTime = nextTime;
+        }
+
+        return Math.ceil(totalAmount);
+    }
 }
