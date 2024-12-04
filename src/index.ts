@@ -10,6 +10,7 @@ import { serveStatic } from 'hono/bun'
 import { Data } from 'hono/dist/types/context';
 import {getCities, createCity, getParkings} from "./controllers/CityController";
 import { filterParkingHistoryController, sortParkingsController } from './controllers/ParkingController';
+import reservationRoutes from './routes/reservationRoutes';
 
 
 const app = new Hono()
@@ -42,6 +43,8 @@ app.get('/sort/available/:order', (ctx) => sortParkingsController(ctx, 'availabl
 
 app.route('/parking', parkingRoutes);
 app.get('/parking/:id/history', filterParkingHistoryController);
+
+app.route("/api", reservationRoutes);
 
 export default app
 
